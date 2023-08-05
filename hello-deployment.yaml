@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-service
+  labels:
+    app: hello-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-service
+  template:
+    metadata:
+      labels:
+        app: hello-service
+    spec:
+      hostname: hello-service
+      containers:
+        - name: hello-service
+          image: hello-service:2023
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8090
+          resources:
+            requests:
+              cpu: 1
+              memory: 512Mi
+            limits:
+              cpu: 1
+              memory: 512Mi
