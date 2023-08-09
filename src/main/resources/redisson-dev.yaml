@@ -1,5 +1,5 @@
 singleServerConfig:
-  address: redis://10.108.54.44:6379
+  address: redis://redis:6379
   database: 2
   password: 123456
   idleConnectionTimeout: 10000
