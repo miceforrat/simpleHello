@@ -17,7 +17,7 @@ spec:
       hostname: hello-service
       containers:
         - name: hello-service
-          image: hello-service:latest
+          image: hello-service:{VERSION}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8090
