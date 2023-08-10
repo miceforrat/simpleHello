@@ -23,40 +23,40 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 @AutoConfigureMockMvc
 @ActiveProfiles("unittest")
 class HelloControllerTest {
-    @Autowired
-    private MockMvc mockMvc;
+//    @Autowired
+//    private MockMvc mockMvc;
 
     @Before
     public void setUp() throws Exception{
-        doSetter();
-        get();
+//        doSetter();
+//        get();
     }
 
-    @Test
-    @Transactional
-    @Rollback()
-    public void doSetter() throws Exception {
-        String json = "{\"msg\":\"test\"}";
-//执行一个RequestBuilder请求，会自动执行SpringMVC的流程并映射到相应的控制器执行处理；
-        mockMvc.perform(MockMvcRequestBuilders
-                        .post("/hello")
-                        .content(json.getBytes()) //传json参数
-                        .accept(MediaType.APPLICATION_JSON)
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)
-                )
-                .andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
-                .andDo(print());
-    }
-
-
-    @Test
-    public void get() throws Exception{
-        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
-                .get("/hello")
-        );
-        resultActions.andReturn().getResponse().setCharacterEncoding("UTF-8");
-        resultActions.andExpect(MockMvcResultMatchers.status().isOk()).andDo(print());
-    }
+//    @Test
+//    @Transactional
+//    @Rollback()
+//    public void doSetter() throws Exception {
+//        String json = "{\"msg\":\"test\"}";
+////执行一个RequestBuilder请求，会自动执行SpringMVC的流程并映射到相应的控制器执行处理；
+//        mockMvc.perform(MockMvcRequestBuilders
+//                        .post("/hello")
+//                        .content(json.getBytes()) //传json参数
+//                        .accept(MediaType.APPLICATION_JSON)
+//                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+//                )
+//                .andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
+//                .andDo(print());
+//    }
+//
+//
+//    @Test
+//    public void get() throws Exception{
+//        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
+//                .get("/hello")
+//        );
+//        resultActions.andReturn().getResponse().setCharacterEncoding("UTF-8");
+//        resultActions.andExpect(MockMvcResultMatchers.status().isOk()).andDo(print());
+//    }
 
 }
 

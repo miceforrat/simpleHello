@@ -22,39 +22,39 @@ class HelloServiceTest {
     @Resource
     private HelloService helloService;
 
-    private static RedisServer redisServer;
-
-    /**
-     * 启动Redis，并在6379端口监听
-     */
-    @BeforeAll
-    public static void startRedis() {
-        // https://github.com/kstyrc/embedded-redis/issues/51
-        redisServer = RedisServer.builder()
-                .port(6379)
-                .setting("maxmemory 128M") //maxheap 128M
-                .build();
-
-        redisServer.start();
-
-    }
-
-    /**
-     * 析构方法之后执行，停止Redis.
-     */
-    @AfterAll
-    public static void stopRedis() {
-        redisServer.stop();
-    }
-
-
-//    @Test
-//    public void testMsgSetterGetter(){
-//        HelloMessage message = new HelloMessage();
-//        message.msg = "tester";
-//        Assertions.assertEquals(message.msg, helloService.getGreeting(message).msg);
+//    private static RedisServer redisServer;
 //
-//        Assertions.assertEquals(message.msg, helloService.getMsgShown());
+//    /**
+//     * 启动Redis，并在6379端口监听
+//     */
+//    @BeforeAll
+//    public static void startRedis() {
+//        // https://github.com/kstyrc/embedded-redis/issues/51
+//        redisServer = RedisServer.builder()
+//                .port(6379)
+//                .setting("maxmemory 128M") //maxheap 128M
+//                .build();
+//
+//        redisServer.start();
+//
 //    }
+//
+//    /**
+//     * 析构方法之后执行，停止Redis.
+//     */
+//    @AfterAll
+//    public static void stopRedis() {
+//        redisServer.stop();
+//    }
+
+
+    @Test
+    public void testMsgSetterGetter(){
+        HelloMessage message = new HelloMessage();
+        message.msg = "tester";
+        Assertions.assertEquals(message.msg, helloService.getGreeting(message).msg);
+
+        Assertions.assertEquals(message.msg, helloService.getMsgShown());
+    }
 
 }
