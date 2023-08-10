@@ -23,30 +23,30 @@ class HelloServiceTest {
     @Resource
     private HelloService helloService;
 
-//    private static RedisServer redisServer;
-//
-//    /**
-//     * 启动Redis，并在6379端口监听
-//     */
-//    @BeforeAll
-//    static void startRedis() {
-//        // https://github.com/kstyrc/embedded-redis/issues/51
-//        redisServer = RedisServer.builder()
-//                .port(6379)
-//                .setting("maxmemory 128M") //maxheap 128M
-//                .build();
-//
-//        redisServer.start();
-//
-//    }
-//
-//    /**
-//     * 析构方法之后执行，停止Redis.
-//     */
-//    @AfterAll
-//    static void stopRedis() {
-//        redisServer.stop();
-//    }
+    private static RedisServer redisServer;
+
+    /**
+     * 启动Redis，并在6379端口监听
+     */
+    @BeforeAll
+    static void startRedis() {
+        // https://github.com/kstyrc/embedded-redis/issues/51
+        redisServer = RedisServer.builder()
+                .port(6379)
+                .setting("maxmemory 128M") //maxheap 128M
+                .build();
+
+        redisServer.start();
+
+    }
+
+    /**
+     * 析构方法之后执行，停止Redis.
+     */
+    @AfterAll
+    static void stopRedis() {
+        redisServer.stop();
+    }
 
 
     @Test
