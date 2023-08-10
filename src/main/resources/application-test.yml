@@ -1,6 +1,5 @@
-server:
-  port: 8090
 spring:
+  profiles: unittest
   application:
     name: hello-service
   cache:
@@ -9,7 +8,7 @@ spring:
       cache-null-values: true
   redis:
     redisson:
-      file: classpath:redisson-dev.yaml
+      file: classpath:redisson-dev-test.yaml
 
 
 
