@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
-@SpringBootTest
+@SpringBootTest(classes = HelloApplication.class)
 @RunWith(SpringRunner.class)
 class HelloServiceTest {
     @Resource
