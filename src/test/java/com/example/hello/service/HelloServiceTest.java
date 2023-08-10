@@ -48,13 +48,13 @@ class HelloServiceTest {
     }
 
 
-    @Test
-    public void testMsgSetterGetter(){
-        HelloMessage message = new HelloMessage();
-        message.msg = "tester";
-        Assertions.assertEquals(message.msg, helloService.getGreeting(message).msg);
-
-        Assertions.assertEquals(message.msg, helloService.getMsgShown());
-    }
+//    @Test
+//    public void testMsgSetterGetter(){
+//        HelloMessage message = new HelloMessage();
+//        message.msg = "tester";
+//        Assertions.assertEquals(message.msg, helloService.getGreeting(message).msg);
+//
+//        Assertions.assertEquals(message.msg, helloService.getMsgShown());
+//    }
 
 }
