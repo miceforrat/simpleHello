@@ -1,15 +1,6 @@
 spring:
-  profiles: unittest
-  application:
-    name: hello-service
-  cache:
-    type: redis
-    redis:
-      cache-null-values: true
+  profiles: unittest # 单元测试，通过注解 ActiveProfiles 使用这一段
   redis:
-    redisson:
-      file: classpath:redisson-dev-test.yaml
-
-
-
-
+    host: localhost
+    port: 6379
+    database: 15

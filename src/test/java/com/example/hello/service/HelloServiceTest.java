@@ -3,9 +3,10 @@ package com.example.hello.service;
 import com.example.hello.HelloApplication;
 import com.example.hello.data.HelloMessage;
 import jakarta.annotation.Resource;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,7 +27,7 @@ class HelloServiceTest {
     /**
      * 启动Redis，并在6379端口监听
      */
-    @BeforeClass
+    @BeforeAll
     public static void startRedis() {
         // https://github.com/kstyrc/embedded-redis/issues/51
         redisServer = RedisServer.builder()
@@ -41,7 +42,7 @@ class HelloServiceTest {
     /**
      * 析构方法之后执行，停止Redis.
      */
-    @AfterClass
+    @AfterAll
     public static void stopRedis() {
         redisServer.stop();
     }
