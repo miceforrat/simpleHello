@@ -10,6 +10,8 @@ spring:
   redis:
     redisson:
       file: classpath:redisson-dev.yaml
+  profiles: unittest
+
 
 
 
