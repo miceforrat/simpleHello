@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class HelloService {
     private String message;
     public HelloMessage getGreeting(HelloMessage msg){
-        message = msg.getMsg();
+        message = msg.msg;
         return msg;
     }
 
