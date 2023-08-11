@@ -8,9 +8,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
-import java.io.RandomAccessFile;
 
-//@Configuration
+@Configuration
 public class RedissonConfig {
 
 //    public static boolean modifyFileContent(String fileName, String oldstr, String newStr) {
@@ -47,8 +46,8 @@ public class RedissonConfig {
     @Bean
     public RedissonClient redisson() throws IOException {
         System.err.println("Get Stage:");
-        System.err.println(System.getProperty("cur_stage"));
         String toVal = System.getProperty("cur_stage");
+        System.err.println(toVal);
         if (toVal == null){
             return Redisson.create(
                     Config.fromYAML(new ClassPathResource("redisson-dev.yaml").getInputStream()));
