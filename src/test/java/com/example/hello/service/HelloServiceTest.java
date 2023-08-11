@@ -2,6 +2,7 @@ package com.example.hello.service;
 
 import com.example.hello.HelloApplication;
 import com.example.hello.data.HelloMessage;
+import com.example.hello.testTool.RedissonMocker;
 import jakarta.annotation.Resource;
 
 import org.junit.jupiter.api.AfterAll;
@@ -25,6 +26,7 @@ class HelloServiceTest {
     @Resource
     private HelloService helloService;
 
+    private RedissonMocker mocker = new RedissonMocker();
 //    private static RedisServer redisServer;
 //
 //    /**
