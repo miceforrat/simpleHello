@@ -46,8 +46,8 @@ public class RedissonConfig {
 //    }
     @Bean
     public RedissonClient redisson() throws IOException {
-        System.out.println("Get Stage:");
-        System.out.println(System.getProperty("cur_stage"));
+        System.err.println("Get Stage:");
+        System.err.println(System.getProperty("cur_stage"));
         String toVal = System.getProperty("cur_stage");
         if (toVal == null){
             return Redisson.create(
