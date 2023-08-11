@@ -27,11 +27,11 @@ dependencies {
 //	implementation 'org.springframework.boot:spring-boot-starter-data-redis-reactive'
 //	implementation 'org.springframework.boot:spring-boot-configuration-processor'
 	testImplementation ('org.springframework.boot:spring-boot-starter-test')
-	testImplementation ('it.ozimov:embedded-redis:0.7.3') {
-		exclude group: 'org.slf4j', module: 'simple.SimpleServiceProvider'
-	}
+//	testImplementation ('it.ozimov:embedded-redis:0.7.3') {
+//		exclude group: 'org.slf4j', module: 'simple.SimpleServiceProvider'
+//	}
 
-	testImplementation 'ai.grakn:redis-mock:0.1.6'
+//	testImplementation 'ai.grakn:redis-mock:0.1.6'
 }
 
 tasks.named('test') {
