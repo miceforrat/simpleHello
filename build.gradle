@@ -1,3 +1,6 @@
+import com.sun.jdi.Value
+import org.springframework.core.env.Environment
+
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.1.2'
@@ -52,8 +55,8 @@ tasks.named('test') {
 tasks.named('bootJar'){
 	doFirst{
 		System.err.println("It is build stage")
-		System.err.println(System.getProperty("spring.redis.redisson.file"))
-		System.setProperty("redis.redisson.file", "classpath:redisson-dev.yaml")
+
+		System.setProperty("cur_stage", "bootJar")
 	}
 }
 
