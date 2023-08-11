@@ -28,7 +28,7 @@ dependencies {
 //	implementation 'org.springframework.boot:spring-boot-configuration-processor'
 	testImplementation ('org.springframework.boot:spring-boot-starter-test')
 	testImplementation ('it.ozimov:embedded-redis:0.7.3') {
-		exclude (group: "org.slf4j.slf4j-simple", module:'2.0.7')
+		exclude (group: "org.slf4j.slf4j-simple", module:'1.7.21')
 	}
 
 
