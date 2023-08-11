@@ -19,6 +19,8 @@ repositories {
 
 
 dependencies {
+	implementation 'io.micrometer:micrometer-registry-prometheus'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator:2.7.1'
 	implementation 'com.google.guava:guava:31.1-jre'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.redisson:redisson-spring-boot-starter:3.21.1'
