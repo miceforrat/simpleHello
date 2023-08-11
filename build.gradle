@@ -42,6 +42,14 @@ tasks.named('test') {
 	useJUnitPlatform()
 	doFirst{
 		System.err.println("It is abilityTest")
+		System.setProperty("redis.redisson.file", "classpath:redisson-dev-test.yaml")
+	}
+}
+
+tasks.named('bootJar'){
+	doFirst{
+		System.err.println("It is build test")
+		System.setProperty("redis.redisson.file", "classpath:redisson-dev.yaml")
 	}
 }
 

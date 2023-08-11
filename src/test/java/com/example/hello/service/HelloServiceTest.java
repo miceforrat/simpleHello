@@ -20,7 +20,7 @@ import redis.embedded.RedisServer;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 //@ActiveProfiles("unittest")
-@ContextConfiguration(locations= {"classpath*:application-test.yml"})
+//@ContextConfiguration(locations= {"classpath*:application-test.yml"})
 class HelloServiceTest {
     @Resource
     private HelloService helloService;
