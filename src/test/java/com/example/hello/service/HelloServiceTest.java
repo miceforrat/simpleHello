@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @ActiveProfiles("unittest")
-@ContextConfiguration(locations= {"classpath*:application.yml"})
+//@ContextConfiguration(locations= {"classpath*:application.yml"})
 class HelloServiceTest {
     @Resource
     private HelloService helloService;
