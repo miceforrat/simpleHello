@@ -1,5 +1,4 @@
-import com.sun.jdi.Value
-import org.springframework.core.env.Environment
+
 
 plugins {
 	id 'java'
@@ -43,15 +42,15 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
-	System.setProperty("cur_stage", "test")
-//	doFirst{
-//		System.err.println("It is abilityTest")
-//		System.setProperty("cur_stage", "test")
-////		System.err.println(System.getProperty("spring.redis.redisson.file"))
-////		System.err.println(System.getProperty("redis"))
-////		System.setProperty("redis.redisson.file", "classpath:redisson-dev-test.yaml")
-////		System.err.println(System.getProperty("redis.redisson.file"))
-//	}
+	doFirst{
+		System.err.println("It is abilityTest")
+		System.setProperty("cur_stage", "test")
+		System.err.println(System.getProperty("cur_stage"))
+//		System.err.println(System.getProperty("spring.redis.redisson.file"))
+//		System.err.println(System.getProperty("redis"))
+//		System.setProperty("redis.redisson.file", "classpath:redisson-dev-test.yaml")
+//		System.err.println(System.getProperty("redis.redisson.file"))
+	}
 }
 
 //tasks.named('bootJar'){
