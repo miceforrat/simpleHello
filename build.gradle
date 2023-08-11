@@ -21,11 +21,13 @@ repositories {
 dependencies {
 
 	//这两行提交上去会gradle fail，但是@EnablePrometheusEndpoint要这两行依赖，不然暴露不了端口，姑且都先注释了
-//	implementation 'io.prometheus:simpleclient_spring_boot:0.11.0'
+	implementation 'io.prometheus:simpleclient_spring_boot:0.16.0'
 //	implementation 'io.prometheus:simpleclient:0.16.0'
+
 
 	implementation 'io.micrometer:micrometer-registry-prometheus'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator:2.7.1'
+
 	implementation 'com.google.guava:guava:31.1-jre'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.redisson:redisson-spring-boot-starter:3.21.1'
