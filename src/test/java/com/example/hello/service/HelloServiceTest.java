@@ -33,6 +33,7 @@ class HelloServiceTest {
     @BeforeAll
     public static void startRedis() {
 
+        System.setProperty("cur_stage", "test");
         // https://github.com/kstyrc/embedded-redis/issues/51
         redisServer = RedisServer.builder()
                 .port(6379)
