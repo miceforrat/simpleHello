@@ -2,6 +2,7 @@ package com.example.hello.service;
 
 import com.example.hello.HelloApplication;
 import com.example.hello.data.HelloMessage;
+import com.example.hello.testTool.RedisServerMocker;
 import jakarta.annotation.Resource;
 
 import org.junit.jupiter.api.AfterAll;
@@ -25,31 +26,30 @@ class HelloServiceTest {
     @Resource
     private HelloService helloService;
 
-    private static RedisServer redisServer;
+    private final RedisServerMocker mocker= new RedisServerMocker();
 
-    /**
-     * 启动Redis，并在6379端口监听
-     */
-    @BeforeAll
-    public static void startRedis() {
-        System.setProperty("cur_stage", "test");
-        // https://github.com/kstyrc/embedded-redis/issues/51
-        redisServer = RedisServer.builder()
-                .port(6379)
-                .setting("maxmemory 128M") //maxheap 128M
-                .build();
-
-        redisServer.start();
-
-    }
-
-    /**
-     * 析构方法之后执行，停止Redis.
-     */
-    @AfterAll
-    public static void stopRedis() {
-        redisServer.stop();
-    }
+//    /**
+//     * 启动Redis，并在6379端口监听
+//     */
+//    @BeforeAll
+//    public static void startRedis() {
+//        System.setProperty("cur_stage", "test");
+//        redisServer = RedisServer.builder()
+//                .port(6379)
+//                .setting("maxmemory 128M") //maxheap 128M
+//                .build();
+//
+//        redisServer.start();
+//
+//    }
+//
+//    /**
+//     * 析构方法之后执行，停止Redis.
+//     */
+//    @AfterAll
+//    public static void stopRedis() {
+//        redisServer.stop();
+//    }
 
 
     @Test
