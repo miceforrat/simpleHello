@@ -43,6 +43,7 @@ tasks.named('test') {
 	doFirst{
 		System.err.println("It is abilityTest")
 		System.err.println(System.getProperty("redis.redisson.file"))
+		System.err.println(System.getProperty("redis"))
 		System.setProperty("redis.redisson.file", "classpath:redisson-dev-test.yaml")
 		System.err.println(System.getProperty("redis.redisson.file"))
 	}
