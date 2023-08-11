@@ -16,7 +16,7 @@ public class PrometheusController {
         this.prometheusService=prometheusService;
     }
 
-    @GetMapping("/hello")
+    @GetMapping("/metric")
     public String handleRequest(){
         prometheusService.processRequest();
         return "Request processed!";
