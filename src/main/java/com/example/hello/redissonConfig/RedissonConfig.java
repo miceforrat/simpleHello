@@ -13,8 +13,10 @@ import java.io.IOException;
 public class RedissonConfig {
     @Bean
     public RedissonClient redisson() throws IOException {
+        System.out.println("Get Stage:");
         System.out.println(System.getProperty("cur_stage"));
-        if (System.getProperty("cur_stage").equals("bootJar")){
+        String toVal = System.getProperty("cur_stage");
+        if (toVal!= null && toVal.equals("bootJar")){
             return Redisson.create(
                     Config.fromYAML(new ClassPathResource("redisson-dev.yaml").getInputStream()));
         }
