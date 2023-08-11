@@ -57,7 +57,7 @@ tasks.named('bootJar'){
 	doFirst{
 		System.err.println("It is build stage")
 
-		System.setProperty("cur_stage", "bootJar")
+//		System.setProperty("cur_stage", "bootJar")
 	}
 }
 
