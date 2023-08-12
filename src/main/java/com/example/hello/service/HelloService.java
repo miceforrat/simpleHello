@@ -20,14 +20,23 @@ public class HelloService {
 //    }
 
     public HelloMessage getGreeting(HelloMessage msg){
-        message = msg.msg;
-//        Map<String, String> cacheMap = redisson.getMap("cacheInfo");
-//        cacheMap.replace("getMsg", msg.msg);
+//        message = msg.msg;
+        Map<String, String> cacheMap = redisson.getMap("cacheInfo");
+        if (!cacheMap.containsKey("getMsg")){
+            cacheMap.put("getMsg", msg.msg);
+        } else {
+            cacheMap.replace("getMsg", msg.msg);
+        }
+
         return msg;
     }
 
     public String getMsgShown(){
-//        Map<String, String> tmpMap = redisson.getMap("cacheInfo");
-        return message;
+        Map<String, String> cacheMap = redisson.getMap("cacheInfo");
+        if (!cacheMap.containsKey("getMsg")){
+            cacheMap.put("getMsg", "");
+            return "";
+        }
+        return cacheMap.get("getMsg");
     }
 }
