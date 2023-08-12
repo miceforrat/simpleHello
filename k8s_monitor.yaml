@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    k8s-app: cloudnative-project
+  name: cloudnative-project
+  namespace: monitoring
+spec:
+  endpoints:
+  - interval: 30s
+  port: tcp
+  path: /actuator/prometheus
+  scheme: 'http'
+namespaceSelector:
+  matchNames:
+  - nju18
