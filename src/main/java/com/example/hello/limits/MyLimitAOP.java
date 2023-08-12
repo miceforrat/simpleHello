@@ -46,7 +46,7 @@ public class MyLimitAOP {
         // permits 允许获得的许可数量 (如果获取失败，返回false) 1秒内不能获取到1个令牌，则返回，不阻塞
         // 尝试访问数据，占数据计算值var1，设置等待时间var3
         // acquire() 默认如下参数 如果超时时间为-1，则永不超时，则将线程阻塞，直至令牌补充
-        if (!rateLimiter.tryAcquire(1, 2, TimeUnit.MILLISECONDS)) {
+        if (!rateLimiter.tryAcquire(1, 1, TimeUnit.MILLISECONDS)) {
             System.out.println("???");
             return ResponseEntity.status(429).body("{\"code\":\"429\", \"msg\":\"Too many requests!\"}");
         }
