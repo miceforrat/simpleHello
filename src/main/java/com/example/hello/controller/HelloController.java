@@ -20,17 +20,9 @@ public class HelloController {
 //    private RateLimiter limiter = RateLimiter.create(100);
 
     @PostMapping("/hello")
-    @MyRedisRLimiter(name = "greet", period = 1, count = 10, key = "greet_key")
+    @MyRedisRLimiter(name = "greet", period = 1, count = 1, key = "greet_key")
     public ResponseEntity<Object> responseToGreeting(@RequestBody HelloMessage msgIn){
-//        try {
-//            int a = 0;
-//        } catch (Exception e){
-//            System.out.println("test:" + e.getMessage());
-////            if (e.getMessage().equals("limitRESPONSETOGREETING")) {
-//            return ResponseEntity.status(429).body("{\"code\":\"429\", \"msg\":\"Too many requests!\"}");
-////            }
-////            e.printStackTrace();
-//        }
+
         return ResponseEntity.status(200).body(helloService.getGreeting(msgIn));
     }
 
