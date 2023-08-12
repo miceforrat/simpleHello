@@ -4,7 +4,7 @@ metadata:
   labels:
     k8s-app: hello-service
   name: hello-service
-  namespace: monitoring
+  namespace: nju18
 spec:
   endpoints:
   - interval: 30s
