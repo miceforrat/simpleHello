@@ -4,6 +4,7 @@ metadata:
   name: hello-service
   labels:
     app: hello-service
+  namespace: nju18
 spec:
   replicas: 3
   selector:
