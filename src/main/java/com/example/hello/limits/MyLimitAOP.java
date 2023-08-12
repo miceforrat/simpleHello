@@ -36,7 +36,7 @@ public class MyLimitAOP {
         String key = StringUtils.upperCase(method.getName());
 //        ImmutableList keys = ImmutableList.of(StringUtils.join(REDIS_LIMIT_KEY_HEAD, limit.prefix(), ":", ip, key));
         // 生成key
-        final String ofRateLimiter = REDIS_LIMIT_KEY_HEAD + key;
+        final String ofRateLimiter = REDIS_LIMIT_KEY_HEAD + key + limit.key();
         RRateLimiter rateLimiter = redisson.getRateLimiter(ofRateLimiter);
         // 创建令牌桶数据模型
         if (!rateLimiter.isExists()) {

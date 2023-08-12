@@ -15,6 +15,8 @@ public class HelloController {
     @Autowired
     private HelloService helloService;
 
+
+
 //    private RateLimiter limiter = RateLimiter.create(100);
 
     @PostMapping("/hello")
@@ -34,6 +36,7 @@ public class HelloController {
 
 
     @GetMapping("/hello")
+    @MyRedisRLimiter(name = "greet", period = 1, count = 100, key = "get_greet_key")
     public String showMsg(){
 
         return helloService.getMsgShown();
