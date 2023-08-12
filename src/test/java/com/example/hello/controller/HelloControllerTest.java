@@ -15,17 +15,21 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 import redis.embedded.RedisServer;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @SpringBootTest
-@RunWith(SpringRunner.class)
-@AutoConfigureMockMvc
+//@RunWith(SpringRunner.class)
+//@AutoConfigureMockMvc
 class HelloControllerTest {
-    @Autowired
+//    @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private WebApplicationContext webApplicationContext;
 
     private static RedisServer redisServer;
 
@@ -62,6 +66,7 @@ class HelloControllerTest {
 
     @Test
     public void doSetter() throws Exception {
+        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         String json = "{\"msg\":\"testers\"}";
 //执行一个RequestBuilder请求，会自动执行SpringMVC的流程并映射到相应的控制器执行处理；
         mockMvc.perform(MockMvcRequestBuilders
@@ -77,6 +82,7 @@ class HelloControllerTest {
 
     @Test
     public void get() throws Exception{
+        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
                 .get("/hello")
         );

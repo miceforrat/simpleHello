@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-@EnablePrometheusEndpoint
-@EnableSpringBootMetricsCollector
+//@EnablePrometheusEndpoint
+//@EnableSpringBootMetricsCollector
 public class HelloApplication {
 
 	public static void main(String[] args) {
