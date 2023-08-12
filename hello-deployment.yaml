@@ -20,7 +20,6 @@ spec:
       labels:
         app: hello-service
     spec:
-      hostname: hello-service
       containers:
         - name: hello-service
           image: harbor.edu.cn/nju18/hello-service:{VERSION}

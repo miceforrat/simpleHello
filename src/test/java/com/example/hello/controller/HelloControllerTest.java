@@ -22,8 +22,7 @@ import redis.embedded.RedisServer;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @SpringBootTest
-//@RunWith(SpringRunner.class)
-//@AutoConfigureMockMvc
+
 class HelloControllerTest {
 //    @Autowired
     private MockMvc mockMvc;
