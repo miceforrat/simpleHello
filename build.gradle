@@ -31,7 +31,7 @@ dependencies {
 	implementation 'com.google.guava:guava:31.1-jre'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.redisson:redisson-spring-boot-starter:3.21.1'
-	implementation 'org.redisson:redisson-spring-data-30:3.23.2'
+	implementation 'org.redisson:redisson-spring-data-30:3.21.1'
 	implementation 'org.springframework.boot:spring-boot-starter-aop'
 	implementation 'org.apache.commons:commons-lang3:3.12.0'
 	implementation 'junit:junit:4.13.1'
