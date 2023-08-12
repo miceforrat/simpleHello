@@ -24,12 +24,12 @@ spec:
         - name: hello-service
           image: harbor.edu.cn/nju18/hello-service:{VERSION}
           imagePullPolicy: IfNotPresent
-          resources:
-            requests:
-              cpu: 1
-              memory: 512Mi
-            limits:
-              cpu: 1
-              memory: 512Mi
+#          resources:
+#            requests:
+#              cpu: 1
+#              memory: 512Mi
+#            limits:
+#              cpu: 1
+#              memory: 512Mi
       imagePullSecrets:
         - name: harbor
