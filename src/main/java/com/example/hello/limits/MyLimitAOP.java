@@ -1,5 +1,6 @@
 package com.example.hello.limits;
 
+import com.google.common.util.concurrent.RateLimiter;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -8,6 +9,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.redisson.api.RRateLimiter;
 import org.redisson.api.RateIntervalUnit;
+import org.redisson.api.RateLimiterConfig;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -37,19 +39,32 @@ public class MyLimitAOP {
 //        ImmutableList keys = ImmutableList.of(StringUtils.join(REDIS_LIMIT_KEY_HEAD, limit.prefix(), ":", ip, key));
         // 生成key
         final String ofRateLimiter = REDIS_LIMIT_KEY_HEAD + key + limit.key();
-        RRateLimiter rateLimiter = redisson.getRateLimiter(ofRateLimiter);
-        // 创建令牌桶数据模型
-        if (!rateLimiter.isExists()) {
-            rateLimiter.trySetRate(limit.mode(), limit.count(), limit.period(), RateIntervalUnit.SECONDS);
-        }
+        RRateLimiter rateLimiter = getRateLimiter(limit, ofRateLimiter);
 
         // permits 允许获得的许可数量 (如果获取失败，返回false) 1秒内不能获取到1个令牌，则返回，不阻塞
         // 尝试访问数据，占数据计算值var1，设置等待时间var3
         // acquire() 默认如下参数 如果超时时间为-1，则永不超时，则将线程阻塞，直至令牌补充
         if (!rateLimiter.tryAcquire(1, 1, TimeUnit.MILLISECONDS)) {
-            System.out.println("???");
             return ResponseEntity.status(429).body("{\"code\":\"429\", \"msg\":\"Too many requests!\"}");
         }
         return point.proceed();
+    }
+
+    private RRateLimiter getRateLimiter(MyRedisRLimiter limit, String key){
+        long count = limit.count();
+        long interval = limit.period();
+        RRateLimiter rateLimiter = redisson.getRateLimiter(key);
+        // 创建令牌桶数据模型
+        if (!rateLimiter.isExists()) {
+            rateLimiter.trySetRate(limit.mode(), limit.count(), limit.period(), RateIntervalUnit.SECONDS);
+            return rateLimiter;
+        }
+
+        RateLimiterConfig config = rateLimiter.getConfig();
+        if (config.getRate() != count || config.getRateInterval() != interval || config.getRateType() != limit.mode()){
+            rateLimiter.delete();
+            rateLimiter.trySetRate(limit.mode(), count, interval, RateIntervalUnit.SECONDS);
+        }
+        return rateLimiter;
     }
 }
