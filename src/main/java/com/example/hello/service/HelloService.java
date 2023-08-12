@@ -9,25 +9,25 @@ import java.util.Map;
 
 @Service
 public class HelloService {
-//    private String message;
+    private String message;
 
     @Autowired
     private RedissonClient redisson;
 
-    HelloService(){
-        Map<String, String> cacheMap = redisson.getMap("cacheInfo");
-        cacheMap.putIfAbsent("getMsg", "");
-    }
+//    HelloService(){
+//        Map<String, String> cacheMap = redisson.getMap("cacheInfo");
+//        cacheMap.putIfAbsent("getMsg", "");
+//    }
 
     public HelloMessage getGreeting(HelloMessage msg){
-//        message = msg.msg;
-        Map<String, String> cacheMap = redisson.getMap("cacheInfo");
-        cacheMap.replace("getMsg", msg.msg);
+        message = msg.msg;
+//        Map<String, String> cacheMap = redisson.getMap("cacheInfo");
+//        cacheMap.replace("getMsg", msg.msg);
         return msg;
     }
 
     public String getMsgShown(){
-        Map<String, String> tmpMap = redisson.getMap("cacheInfo");
-        return tmpMap.getOrDefault("getMsg", "");
+//        Map<String, String> tmpMap = redisson.getMap("cacheInfo");
+        return message;
     }
 }
