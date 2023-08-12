@@ -1,7 +1,6 @@
 package com.example.hello.redissonConfig;
 
-//import io.prometheus.client.spring.boot.EnablePrometheusEndpoint;
-//import io.prometheus.client.spring.boot.EnableSpringBootMetricsCollector;
+
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
@@ -13,8 +12,7 @@ import java.io.IOException;
 
 
 @Configuration
-//@EnablePrometheusEndpoint
-//@EnableSpringBootMetricsCollector
+
 public class RedissonConfig {
 
     @Bean
