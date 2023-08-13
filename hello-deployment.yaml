@@ -6,15 +6,15 @@ metadata:
     app: hello-service
   namespace: nju18
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: hello-service
-#  strategy:
-#    type: RollingUpdate
-#    rollingUpdate:
-#      maxSurge: 25%
-#      maxUnavailable: 25%
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
   template:
     metadata:
       annotations:
