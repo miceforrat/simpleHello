@@ -42,9 +42,8 @@ public class MyLimitAOP {
         RRateLimiter rateLimiter = getRateLimiter(limit, ofRateLimiter);
 
         // permits 允许获得的许可数量 (如果获取失败，返回false) 1秒内不能获取到1个令牌，则返回，不阻塞
-        // 尝试访问数据，占数据计算值var1，设置等待时间var3
-        // acquire() 默认如下参数 如果超时时间为-1，则永不超时，则将线程阻塞，直至令牌补充
-        if (!rateLimiter.tryAcquire(1, 1, TimeUnit.MILLISECONDS)) {
+
+        if (!rateLimiter.tryAcquire(1)) {
             return ResponseEntity.status(429).body("{\"code\":\"429\", \"msg\":\"Too many requests!\"}");
         }
         return point.proceed();
@@ -61,7 +60,12 @@ public class MyLimitAOP {
         }
 
         RateLimiterConfig config = rateLimiter.getConfig();
-        if (config.getRate() != count || config.getRateInterval() != interval || config.getRateType() != limit.mode()){
+
+        long timeByMilli=TimeUnit.MILLISECONDS.convert(config.getRateInterval(), TimeUnit.SECONDS);
+        long beforeRate = config.getRate();
+        System.err.println("limiterName: " + key + "; count: " + count + "; interval: " + interval + "; beforeRate: " + beforeRate + "; lastInterval "+ timeByMilli);
+        if (beforeRate != count || timeByMilli != interval || !config.getRateType().equals(limit.mode())){
+            System.err.println("Changed");
             rateLimiter.delete();
             rateLimiter.trySetRate(limit.mode(), count, interval, RateIntervalUnit.SECONDS);
         }
