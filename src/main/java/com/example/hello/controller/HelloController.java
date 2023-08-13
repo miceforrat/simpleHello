@@ -20,7 +20,7 @@ public class HelloController {
 //    private RateLimiter limiter = RateLimiter.create(100);
 
     @PostMapping("/hello")
-    @MyRedisRLimiter(name = "greet", period = 1, count = 1, key = "greet_key")
+    @MyRedisRLimiter(name = "greet", period = 1, count = 10, key = "greet_key")
     public ResponseEntity<Object> responseToGreeting(@RequestBody HelloMessage msgIn){
 
         return ResponseEntity.status(200).body(helloService.getGreeting(msgIn));
