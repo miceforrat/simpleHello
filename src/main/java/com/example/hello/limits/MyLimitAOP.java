@@ -60,13 +60,13 @@ public class MyLimitAOP {
         }
 
         RateLimiterConfig config = rateLimiter.getConfig();
-
-        long timeByMilli=TimeUnit.MILLISECONDS.convert(config.getRateInterval(), TimeUnit.SECONDS);
+        long lastInterval = config.getRateInterval();
+        long timeByMilli=TimeUnit.MILLISECONDS.convert(interval, TimeUnit.SECONDS);
         long beforeRate = config.getRate();
-        System.err.println("limiterName: " + key + "; count: " + count + "; interval: " + interval + "; beforeRate: " + beforeRate + "; lastInterval "+ timeByMilli);
-        if (beforeRate != count || timeByMilli != interval || !config.getRateType().equals(limit.mode())){
+        System.err.println("limiterName: " + key + "; count: " + count + "; interval: " + interval + "; beforeRate: " + beforeRate + "; lastInterval "+ lastInterval);
+        if (beforeRate != count || timeByMilli !=lastInterval || !config.getRateType().equals(limit.mode())){
             System.err.println("Changed");
-            rateLimiter.delete();
+//            rateLimiter.delete();
             rateLimiter.trySetRate(limit.mode(), count, interval, RateIntervalUnit.SECONDS);
         }
         return rateLimiter;
