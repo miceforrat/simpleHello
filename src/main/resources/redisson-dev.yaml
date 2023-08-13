@@ -1,4 +1,4 @@
-SingleServerConfig:
+clusterServerConfig:
   address: redis://redis:6379
   database: 2
   password: 123456
