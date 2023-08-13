@@ -19,10 +19,19 @@ repositories {
 
 
 dependencies {
+
+	//这两行提交上去会gradle fail，但是@EnablePrometheusEndpoint要这两行依赖，不然暴露不了端口，姑且都先注释了
+	implementation 'io.prometheus:simpleclient_spring_boot:0.16.0'
+//	implementation 'io.prometheus:simpleclient:0.16.0'
+
+
+	implementation 'io.micrometer:micrometer-registry-prometheus'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator:2.7.1'
+
 	implementation 'com.google.guava:guava:31.1-jre'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.redisson:redisson-spring-boot-starter:3.21.1'
-	implementation 'org.redisson:redisson-spring-data-30:3.23.2'
+	implementation 'org.redisson:redisson-spring-data-30:3.21.1'
 	implementation 'org.springframework.boot:spring-boot-starter-aop'
 	implementation 'org.apache.commons:commons-lang3:3.12.0'
 	implementation 'junit:junit:4.13.1'
@@ -42,22 +51,7 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
-	doFirst{
-		System.err.println("It is abilityTest")
-		System.setProperty("cur_stage", "test")
-		System.err.println(System.getProperty("cur_stage"))
-//		System.err.println(System.getProperty("spring.redis.redisson.file"))
-//		System.err.println(System.getProperty("redis"))
-//		System.setProperty("redis.redisson.file", "classpath:redisson-dev-test.yaml")
-//		System.err.println(System.getProperty("redis.redisson.file"))
-	}
 }
 
-//tasks.named('bootJar'){
-////	doFirst{
-////		System.err.println("It is build stage")
-////
-//////		System.setProperty("cur_stage", "bootJar")
-////	}
-//}
+
 

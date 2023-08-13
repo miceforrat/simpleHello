@@ -10,8 +10,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import redis.embedded.RedisServer;
 //import redis.embedded.RedisServer;
@@ -32,6 +30,8 @@ class HelloServiceTest {
      */
     @BeforeAll
     public static void startRedis() {
+
+        System.setProperty("cur_stage", "test");
         // https://github.com/kstyrc/embedded-redis/issues/51
         redisServer = RedisServer.builder()
                 .port(6379)

@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    k8s-app: hello-service
+  name: hello-service
+  namespace: monitoring
+spec:
+  endpoints:
+  - interval: 30s
+    port: http
+    path: /actuator/prometheus
+    scheme: 'http'
+  selector:
+    matchLabels:
+      app: hello-service
+  namespaceSelector:
+    matchNames:
+    - nju18

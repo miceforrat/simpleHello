@@ -4,29 +4,37 @@ metadata:
   name: hello-service
   labels:
     app: hello-service
+  namespace: nju18
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: hello-service
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
   template:
     metadata:
+      annotations:
+        prometheus.io/path: /actuator/prometheus
+        prometheus.io/port: "8080"
+        prometheus.io/scheme: http
+        prometheus.io/scrape: "true"
       labels:
         app: hello-service
     spec:
-      hostname: hello-service
       containers:
         - name: hello-service
           image: harbor.edu.cn/nju18/hello-service:{VERSION}
           imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 8090
-          resources:
-            requests:
-              cpu: 1
-              memory: 512Mi
-            limits:
-              cpu: 1
-              memory: 512Mi
+#          resources:
+#            requests:
+#              cpu: 1
+#              memory: 512Mi
+#            limits:
+#              cpu: 1
+#              memory: 512Mi
       imagePullSecrets:
         - name: harbor
