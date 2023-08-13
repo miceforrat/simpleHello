@@ -10,11 +10,11 @@ spec:
   selector:
     matchLabels:
       app: hello-service
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
+#  strategy:
+#    type: RollingUpdate
+#    rollingUpdate:
+#      maxSurge: 25%
+#      maxUnavailable: 25%
   template:
     metadata:
       annotations:
