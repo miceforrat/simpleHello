@@ -1,6 +1,5 @@
 package com.example.hello.limits;
 
-import com.google.common.util.concurrent.RateLimiter;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -63,7 +62,8 @@ public class MyLimitAOP {
         long lastInterval = config.getRateInterval();
         long timeByMilli=TimeUnit.MILLISECONDS.convert(interval, TimeUnit.SECONDS);
         long beforeRate = config.getRate();
-        System.err.println("limiterName: " + key + "; count: " + count + "; interval: " + interval + "; beforeRate: " + beforeRate + "; lastInterval "+ lastInterval);
+        System.err.println(config.getRateType().toString());
+        System.err.println("limiterName: " + key + "; count: " + count + "; interval: " + interval + "; beforeRate: " + beforeRate + "; lastInterval "+ lastInterval + "; mode: "+ limit.mode());
         if (beforeRate != count || timeByMilli !=lastInterval || !config.getRateType().equals(limit.mode())){
             System.err.println("Changed");
 //            rateLimiter.delete();

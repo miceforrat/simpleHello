@@ -4,13 +4,9 @@ import org.junit.Before;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -24,7 +20,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 @SpringBootTest
 
 class HelloControllerTest {
-//    @Autowired
     private MockMvc mockMvc;
 
     @Autowired
@@ -39,7 +34,6 @@ class HelloControllerTest {
     public static void startRedis() {
 
         System.setProperty("cur_stage", "test");
-        // https://github.com/kstyrc/embedded-redis/issues/51
         redisServer = RedisServer.builder()
                 .port(6379)
                 .setting("maxmemory 128M") //maxheap 128M

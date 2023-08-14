@@ -9,18 +9,11 @@ import java.util.Map;
 
 @Service
 public class HelloService {
-    private String message;
-
     @Autowired
     private RedissonClient redisson;
 
-//    HelloService(){
-//        Map<String, String> cacheMap = redisson.getMap("cacheInfo");
-//        cacheMap.putIfAbsent("getMsg", "");
-//    }
 
     public HelloMessage getGreeting(HelloMessage msg){
-//        message = msg.msg;
         Map<String, String> cacheMap = redisson.getMap("cacheInfo");
         if (!cacheMap.containsKey("getMsg")){
             cacheMap.put("getMsg", msg.msg);

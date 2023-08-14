@@ -1,6 +1,5 @@
 package com.example.hello.service;
 
-import com.example.hello.HelloApplication;
 import com.example.hello.data.HelloMessage;
 import jakarta.annotation.Resource;
 
@@ -12,13 +11,10 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import redis.embedded.RedisServer;
-//import redis.embedded.RedisServer;
 
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-//@ActiveProfiles("unittest")
-//@ContextConfiguration(locations= {"classpath*:application-test.yml"})
 class HelloServiceTest {
     @Resource
     private HelloService helloService;
@@ -32,7 +28,6 @@ class HelloServiceTest {
     public static void startRedis() {
 
         System.setProperty("cur_stage", "test");
-        // https://github.com/kstyrc/embedded-redis/issues/51
         redisServer = RedisServer.builder()
                 .port(6379)
                 .setting("maxmemory 128M") //maxheap 128M
